@@ -1,0 +1,50 @@
+name: Build Power
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ordnerstruktur anlegen
+        run: |
+          mkdir -p src/main/java/de/power src/main/resources
+          mv *.java src/main/java/de/power/
+          mv plugin.yml config.yml shop.yml src/main/resources/
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Plugin bauen
+        run: mvn -B clean package
+
+      - name: JAR pruefen
+        run: |
+          unzip -l target/Power.jar | grep -q "plugin.yml" || { echo "FEHLER: plugin.yml fehlt"; exit 1; }
+          unzip -l target/Power.jar | grep -q "shop.yml" || { echo "FEHLER: shop.yml fehlt"; exit 1; }
+          unzip -l target/Power.jar | grep -q "de/power/Power.class" || { echo "FEHLER: Power.class fehlt"; exit 1; }
+          echo "JAR ist in Ordnung"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Power-jar
+          path: target/Power.jar
+
+      - name: Release erstellen
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "build-${{ github.run_number }}" target/Power.jar \
+            --title "Power Build ${{ github.run_number }}" \
+            --notes "Automatischer Build aus Commit ${{ github.sha }}"
