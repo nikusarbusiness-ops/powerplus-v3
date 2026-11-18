@@ -1,0 +1,98 @@
+name: Power
+version: 1.1.0
+main: de.power.Power
+api-version: '1.21'
+softdepend: [LuckPerms, PlaceholderAPI, SimpleScore, ExcellentCrates]
+description: TPA, Homes, RTP, AFK, Blitze, Keys und mehr
+commands:
+  tpa:
+    description: Teleport-Anfrage
+    usage: /tpa <Spieler|accept|deny>
+  tpahere:
+    description: Spieler zu dir teleportieren lassen
+  tpaccept:
+    description: Anfrage annehmen
+  tpdeny:
+    description: Anfrage ablehnen
+  tpauto:
+    description: Automatisches Annehmen an/aus
+  home:
+    description: Home-GUI oeffnen oder zu Home teleportieren
+    usage: /home [name]
+  sethome:
+    description: Home setzen
+  delhome:
+    description: Home loeschen
+  homes:
+    description: Home-GUI oeffnen
+  rtp:
+    description: Zufaelliger Teleport (GUI)
+  rtpq:
+    description: Random-Teleport-Queue
+  spawn:
+    description: Zum Spawn teleportieren
+  setspawn:
+    description: Spawn setzen
+  afk:
+    description: AFK-Area
+    usage: /afk [set|areaset pos1|areaset pos2|info]
+  blitz:
+    description: Blitz-Shop
+    aliases: [blitze]
+  rekord:
+    description: Server-Rekorde
+    aliases: [records]
+  news:
+    description: News und neue Features
+    aliases: [features]
+  anvil:
+    description: Amboss oeffnen
+  wb:
+    description: Werkbank oeffnen
+    aliases: [craft, workbench]
+  ec:
+    description: Enderchest oeffnen
+    aliases: [enderchest]
+  repair:
+    description: Item reparieren (1x pro Tag)
+  sign:
+    description: Item signieren
+    usage: /sign [Text]
+  ranks:
+    description: Raenge und Vorteile
+  keys:
+    description: Deine Keys
+  keyall:
+    description: KeyAll-Info
+  power:
+    description: Admin-Befehle
+    usage: /power reload
+permissions:
+  power.admin:
+    default: op
+  power.setspawn:
+    default: op
+  power.bypass:
+    default: op
+  power.afk.admin:
+    default: op
+  power.blitz.admin:
+    default: op
+  power.news.admin:
+    default: op
+  power.anvil:
+    default: op
+  power.wb:
+    default: op
+  power.ec:
+    default: op
+  power.repair:
+    default: op
+  power.repair.unlimited:
+    default: false
+  power.sign:
+    default: op
+  power.rtp.nether:
+    default: false
+  power.rtp.end:
+    default: false

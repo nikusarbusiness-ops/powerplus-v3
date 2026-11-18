@@ -1,0 +1,87 @@
+# Teleport-Verzoegerung in Sekunden (0 = sofort). Bewegen bricht ab.
+teleport-delay: 3
+tpa-timeout-seconds: 60
+
+homes:
+  default: 3
+  # LuckPerms-Gruppenname -> Anzahl Homes (hoechster Wert gewinnt)
+  ranks:
+    vip: 6
+    mvp: 10
+    admin: 50
+  # Weitere Wege per LuckPerms:
+  #  /lp group vip permission set power.homes.15 true
+  #  /lp group vip meta set power.homes 15
+  #  /lp group admin permission set power.homes.unlimited true
+
+rtp:
+  world: world
+  # Abstand zur Weltmitte (Worldborder wird automatisch beachtet)
+  min-radius: 10000
+  max-radius: 140000
+  nether-world: world_nether
+  nether-min-radius: 500
+  nether-max-radius: 10000
+  end-world: world_the_end
+  end-min-radius: 0
+  end-max-radius: 80
+  nether-locked: true
+  end-locked: true
+
+afk:
+  interval-seconds: 60
+  reward: 1
+  # LuckPerms-Gruppe -> Blitze pro Intervall (hoechster Wert gewinnt)
+  # Alternativ: Permission power.afkreward.<zahl> oder Meta power.afkreward
+  rewards:
+    vip: 2
+    mvp: 3
+
+keyall:
+  enabled: true
+  interval-minutes: 60
+  key: example
+  amount: 1
+  # LuckPerms-Gruppe -> Anzahl Keys (hoechster Wert gewinnt)
+  # Alternativ: Permission power.keyall.<zahl> oder Meta power.keyall
+  ranks:
+    vip: 2
+    mvp: 3
+  # Commands (Konsole). Platzhalter: %player% %key% %amount%
+  # Pruefe den richtigen Command deiner ExcellentCrates-Version mit /crates help
+  commands:
+    - "crates key give %player% %key% %amount%"
+  message: "&aKeyAll! &7Du hast &e%amount%x %key% &7erhalten."
+
+keys:
+  # Platzhalter fuer die Key-Anzahl (benoetigt PlaceholderAPI + ExcellentCrates)
+  placeholder: "%excellentcrates_keys_{id}%"
+  list:
+    example:
+      name: "&6Beispiel Key"
+      material: TRIPWIRE_HOOK
+
+# Fuer /ranks. Schluessel = Name der LuckPerms-Gruppe ("default" = Gratis-Rang)
+ranks:
+  default:
+    name: "&7Spieler"
+    material: LEATHER_CHESTPLATE
+    perks:
+      - "&7- Standard-Features"
+  vip:
+    name: "&aVIP"
+    material: EMERALD
+    perks:
+      - "&7- /ec (Enderchest)"
+      - "&7- /wb (Werkbank)"
+  mvp:
+    name: "&bMVP"
+    material: DIAMOND
+    perks:
+      - "&7- /ec, /wb, /anvil"
+      - "&7- /repair (1x pro Tag)"
+  admin:
+    name: "&cAdmin"
+    material: NETHER_STAR
+    perks:
+      - "&7- Alle Features"

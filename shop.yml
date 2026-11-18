@@ -1,0 +1,20 @@
+# Blitz-Shop. Bearbeiten per Datei ODER ingame mit /blitz shop ...
+# Platzhalter in commands: %player% (Name) und %uuid%
+# Die Commands werden von der Konsole ausgefuehrt.
+items:
+  beispiel-key:
+    name: "&6Beispiel Key"
+    material: TRIPWIRE_HOOK
+    price: 10
+    lore:
+      - "&7Ein Key fuer die Beispiel-Crate."
+    commands:
+      - "crates key give %player% example 1"
+  beispiel-kit:
+    name: "&bDiamant-Paket"
+    material: DIAMOND
+    price: 5
+    lore:
+      - "&7Gibt dir 8 Diamanten."
+    commands:
+      - "give %player% diamond 8"
